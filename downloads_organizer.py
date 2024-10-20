@@ -6,8 +6,6 @@ import shutil
 path = os.path.expanduser('~\Downloads')
 files = os.listdir(path)
 
-
-list_of_file_types = set()
 default_folders = [
     "Office_docs",
     "Pdfs",
@@ -20,7 +18,7 @@ default_folders = [
     "Executables",
     "Folders"
 ]
-catogories = {
+categories = {
     "Office_docs" : ['docx', 'pptx', 'xlsx', 'doc', 'ppt', 'xls'],
     "Pdfs" : ['pdf'],
     "Images" : ['jpg', 'jpeg', 'png', 'gif', 'svg'],
@@ -37,8 +35,8 @@ for file in files:
     destination = os.path.expanduser('~\Downloads')
     # if it is a file
     if os.path.isfile(f"{path}\{file}"):
-        file_type = os.path.splitext(file)[1][1:]
-        for cat, ext in catogories.items():
+        file_type = os.path.splitext(file)[1].lstrip('.')
+        for cat, ext in categories.items():
             if file_type in ext:
                 if not os.path.exists(f"{path}\{cat}"):
                     os.makedirs(f"{path}\{cat}")
